@@ -1,0 +1,255 @@
+@import url(https://fonts.googleapis.com/css?family=Play);
+/* Base Styles*/
+html, body {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Play', sans-serif;
+}
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none!important;;
+    color: white!important;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+/* Layout Styles*/
+
+footer{
+    background: #292727;
+}
+.l-head {
+    background: #292727;
+    padding-top: 20px;
+    width: 100%;
+    height: 100px;
+    transition: all 1s;
+}
+.l-main {
+    width: 100%;
+    background: url("https://tetonist.files.wordpress.com/2014/04/img_1573.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* Modules Styles*/
+.logo {
+    display: inline-block;
+    margin-top: -10px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 5px 2px 2px black;
+}
+.menu {
+    padding: 0px;
+    background: rgba(255, 255, 255, .6);
+    border-radius: 5px;
+    transition: all 2s;
+}
+.menu__item {
+    margin: 0px;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.section-1 {
+    height: 768px;
+}
+.section-2 {
+    height: 468px;
+}
+.main-msg {
+    margin-top: 150px;
+    text-align: center;
+    background: rgba(225, 225, 225, .1);
+}
+.main-msg__btn {
+    margin: 10px;
+    padding: 10px 20px;
+    color: inherit;
+    font-weight: bold;
+    text-align: center;
+    background: rgba(175, 238, 238, .6);
+}
+/* State Styles*/
+.is-menuSmaller {
+    padding-top: 5px;
+    height: 50px;
+    background: rgba(175, 238, 238, .6);
+}
+.is-itemHov:hover {
+    background: black;
+}
+
+/* Forum Index style */
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: middle;
+}
+
+input:focus {
+    outline:none;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+p {line-height: inherit;}
+
+body {
+    background: #222;
+    min-height: 100%;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+
+/* -------------------------------------------- */
+/*            material design icons             */
+/* -------------------------------------------- */
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: inherit;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    cursor: default;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: 100px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #777;
+    font-size: 20px;
+    font-weight: lighter;
+    padding: 10px;
+    color: #FFF;
+}
+
+.forum-topicview-row {
+    border-bottom: 1px solid #555;
+}
+
+td {
+    background: #333;
+    padding: 12px;
+    font-size: 18px;
+    color: #EEE;
+}
+
+.forum-topicsview-header {
+    background-color: #444;
+    color: #FFF;
+}
+
+.forum-topics-col-views {
+    width: 70px;
+    text-align: center;
+}
+
+
+.forum-topics-col-icon {
+    width: 70px;
+    color: #EEE;
+    text-align: center;
+}
+
+.forum-topics-col-lastpost {
+    width: 200px;
+    text-align: center;
+}
+
+.forum-topics-col-lastpost p {
+    font-size: 16px;
+    color: #DDD;
+}
+
+.forum_footer_wrap {
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.forum_ledgend_wrap {
+    padding: 16px;
+    color: #EEE;
+}
+
+.forum_ledgend_wrap  p {
+    margin: 6px;
+}
