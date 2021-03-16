@@ -1,20 +1,19 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">CoursPHP</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/?page=home">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/?page=list-articles">Liste des articles</a>
-                    </li>
-                </ul>
+<header class="l-head">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navi navbar" role="navigation">
+                    <a href="#" class="logo">
+                        H Forum
+                    </a>
+                    <ul class="menu nav nav-pills navbar-right">
+                        <li class="menu__item is-itemHov"><a href="/?page=home">HOME</a></li>
+                        <li class="menu__item is-itemHov"><a href="/?page=list-articles">ARTICLES</a></li>
+                        <li class="menu__item is-itemHov"><a href="/?page=forum">FORUM</a></li>
+                        <li class="menu__item is-itemHov"><a href="/?page=admin">ADMIN</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </nav>
+    </div>
 </header>
