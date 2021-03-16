@@ -1,3 +1,4 @@
+</div>
 <footer class="text-center text-light p-3">
-    &copy; Copyright <?php echo date('Y'); ?> CoursPHP
+    &copy; Copyright H - Forum
 </footer>

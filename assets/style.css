@@ -23,15 +23,24 @@ a:active {
     text-decoration: none;
 }
 /* Layout Styles*/
-
+.website-content{
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 footer{
+    height: 10vh;
+    font-family: 'Play', sans-serif;
+}
+footer,.website-content{
     background: #292727;
 }
 .l-head {
     background: #292727;
     padding-top: 20px;
     width: 100%;
-    height: 100px;
+    position: fixed;
     transition: all 1s;
 }
 .l-main {
@@ -88,15 +97,12 @@ footer{
     background: rgba(175, 238, 238, .6);
 }
 .is-itemHov:hover {
-    background: black;
+    background: lightgray;
 }
 
 /* Forum Index style */
 
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
-@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, blockquote, pre,
@@ -143,48 +149,14 @@ table {
 
 p {line-height: inherit;}
 
-body {
-    background: #222;
-    min-height: 100%;
-    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-}
-
-/* -------------------------------------------- */
-/*            material design icons             */
-/* -------------------------------------------- */
-
-.material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
-    display: inline-block;
-    text-transform: none;
-    letter-spacing: normal;
-    line-height: inherit;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    cursor: default;
-
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-}
 
 .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 80%;
-    margin: 100px auto;
+    margin: auto;
+    font-family: 'Play', sans-serif;
 }
 
 table {
