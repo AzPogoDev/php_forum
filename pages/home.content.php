@@ -3,22 +3,43 @@
 /** @var PDO $database */
 $database = require_once dirname(__FILE__) . '/../utils/database.utils.php';
 
-$query = $database->prepare('SELECT * FROM `articles`');
+$query = $database->prepare('SELECT * FROM category');
+$queryCount = $database->prepare('SELECT * FROM subject');
+
+$queryCount->execute();
 $query->execute();
+
+
 ?>
 
-<?php while (($row = $query->fetch())) { ?>
+<div class="wrapper">
 
-        <div class="container my-5">
-            <div class="row">
-                <div class="col-3">
-                    <img alt="Illustration" src="<?php echo $row['illustration_image_url']; ?>" width="100%" />
-                </div>
-                <div class="col">
-                    <a href="/?page=read-article&id=<?php echo $row['id']; ?>"><h2><?php echo $row['title']; ?></h2></a>
-                    <small><?php echo nl2br($row['chapeau']); ?></small>
-                </div>
-            </div>
-        </div>
+    <table>
 
-<?php } ?>
+
+        <tr>
+            <th class="" style="text-align: left;"> Categories</th>
+
+        </tr>
+        <?php while (($q = $query->fetch())) { ?>
+
+
+            <tr class="forum-topicview-row">
+                <td><a about="__blank" data-bs-toggle="collapse" class="catLink"
+                       aria-controls="collapseCat_<?= $q['id']; ?>">
+                        <p>
+                            <a href="/?page=single-category&name=<?= $q['title']; ?>&catid=<?= $q['id']; ?>"><?= $q['title']; ?></a>
+                        </p>
+                    </a></td>
+            <tr>
+
+
+            </tr>
+
+            </tr>
+
+        <?php } ?>
+    </table>
+
+
+</div>
