@@ -86,47 +86,67 @@ $i = 0;
 
     <?php } ?>
 
+    <div class="recent__post">
+        <h2 class="text-left my-3" style="font-size: 4rem"> Post récents </h2>
+        <div class="card__loop d-flex justify-content-between">
+
+
+            <?php
+            $recentspost = $database->prepare('SELECT * FROM subject LIMIT 3');
+            $recentspost->execute();
+            while (($rp = $recentspost->fetch())) {
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title"><?= $rp['title'] ?></div>
+                        <div class="card-content"><?= $rp['title'] ?></div>
+                    </div>
+                </div>
+
+            <?php } ?>
+        </div>
+
+    </div>
+
 
     <div class="weather">
         <h2 class="text-left my-3" style="font-size: 4rem"> <?php
             $query = @unserialize(file_get_contents('http://ip-api.com/php/'));
-            if ($query && $query['status'] == 'success') {
-                echo 'Bonjour utilisateur de ' . $query['country'] . ', ' . $query['city'] . '!';
-            }
             $cityactual = strtolower($query['city']);
             ?></h2>
+        <h3 style="font-size: 2rem">Voici la météo du jour a <?= $cityactual ?> :</h3>
 
 
-                <?php
+        <?php
 
-                $curl = curl_init();
+        $curl = curl_init();
 
-                curl_setopt_array($curl, [
-                    CURLOPT_URL => "https://community-open-weather-map.p.rapidapi.com/weather?q=$cityactual&lat=0&lon=0&id=2172797&lang=fr&units=metric&mode=xml%2C%20html",
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_ENCODING => "",
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 30,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => "GET",
-                    CURLOPT_HTTPHEADER => [
-                        "x-rapidapi-host: community-open-weather-map.p.rapidapi.com",
-                        "x-rapidapi-key: ab87421a43msh7648e08e514b943p1d41c7jsn1d4bbcb507aa"
-                    ],
-                ]);
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://community-open-weather-map.p.rapidapi.com/weather?q=$cityactual&lat=0&lon=0&id=2172797&lang=fr&units=metric&mode=xml%2C%20html",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "x-rapidapi-host: community-open-weather-map.p.rapidapi.com",
+                "x-rapidapi-key: ab87421a43msh7648e08e514b943p1d41c7jsn1d4bbcb507aa"
+            ],
+        ]);
 
-                $response = curl_exec($curl);
-                $err = curl_error($curl);
-                curl_close($curl);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
 
-                $arrayrep = json_decode($response, true);
+        $arrayrep = json_decode($response, true);
 
-                ?>
+        ?>
         <table class="my-3">
 
 
-            <tr>
+            <tr style="border-bottom: 2px solid #0DB8DE;">
                 <th class="" style="text-align: left;">Température Actuel</th>
                 <th class="" style="text-align: left;">Température Min</th>
                 <th class="" style="text-align: left;">Température Max</th>
