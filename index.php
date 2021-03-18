@@ -4,7 +4,7 @@ session_start();
 
 require_once dirname(__FILE__) . '/includes/top.inc.php';
 
-if (empty($_SESSION['user']) ){
+if (empty($_SESSION['user']) && !empty($_GET['page']) ){
 
     if($_GET['page'] == "admin" && !isset($_SESSION['user'])){
         header("Location: ./?page=home");
