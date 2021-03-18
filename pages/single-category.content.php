@@ -9,18 +9,18 @@ $query->execute([
 ]);
 
 $cateid = $_GET['catid'];
-
+$catname = $_GET['name'];
 if (isset($_POST['subSubmit'])) {
     if (isset($_POST['postTitle']) && !empty($_POST['postTitle']) && isset($_POST['postContent']) && !empty($_POST['postContent'])) {
 
         $queryInsert = $database->prepare('INSERT INTO `subject`(`categoryId`, `title`, `content`) VALUES (:categoryId,:title,:content)');
         $queryInsert->execute([
             'categoryId' => $_GET['catid'],
-             'title' => $_POST['postTitle'],
+            'title' => $_POST['postTitle'],
             'content' => $_POST['postContent']
         ]);
 
-        header("Location: ./?page=single-category&name=Fortnite&catid=$cateid");
+        header("Location: ./?page=single-category&name=$catname&catid=$cateid");
     }
 }
 
@@ -34,9 +34,9 @@ if (isset($_POST['subSubmit'])) {
         <tr>
             <th class="" style="text-align: left;">Bienvenue sur la catégorie
                 : <?= $_GET['name'] ?></th>
-<!--            <th>-->
-<!--                <p>Status</p>-->
-<!--            </th>-->
+            <th>
+                <p>Status</p>
+            </th>
 
         </tr>
 
@@ -51,9 +51,9 @@ if (isset($_POST['subSubmit'])) {
                     <p>
                     </p>
                 </td>
-<!--                <td>-->
-<!--                    <p>--><?//= $q['status']; ?><!--</p>-->
-<!--                </td>-->
+                <td>
+                    <p><?= $q['status']; ?></p>
+                </td>
             <tr>
 
 
@@ -63,19 +63,21 @@ if (isset($_POST['subSubmit'])) {
 
         <?php } ?>
     </table>
-    <form class="mt-5" action="/?page=single-category&name=Fortnite&catid=<?= $cateid ?>" method="POST">
+    <?php if (isset($_SESSION['user'])) : ?>
+        <form class="mt-5" action="/?page=single-category&name=<?= $catname ?>&catid=<?= $cateid ?>" method="POST">
 
-        <div class="form-group">
-            <label for="postTitle">Nom du post</label>
-            <input type="text" class="form-control" id="postTitle" name="postTitle"
-                   placeholder="Nom du post">
-            <label for="postContent">Contenue du post</label>
-            <textarea class="form-control" placeholder="Content" name="postContent" id="postContent"></textarea>
+            <div class="form-group">
+                <label for="postTitle">Nom du post</label>
+                <input type="text" class="form-control" id="postTitle" name="postTitle"
+                       placeholder="Nom du post">
+                <label for="postContent">Contenue du post</label>
+                <textarea class="form-control" placeholder="Content" name="postContent" id="postContent"></textarea>
 
-        </div>
+            </div>
 
-        <button type="submit" name="subSubmit" class="my-2 btn btn-primary">Créer un post</button>
-    </form>
+            <button type="submit" name="subSubmit" class="my-2 btn btn-primary">Créer un post</button>
+        </form>
+    <?php endif; ?>
 
 
 </div>
