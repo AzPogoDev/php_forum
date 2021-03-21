@@ -13,7 +13,7 @@
                             <li class="menu__item is-itemHov"><a href="/?page=mon-compte">MON COMPTE</a></li>
 
                         <?php endif; ?>
-                        <?php if (isset($_SESSION['user'])) : ?>
+                        <?php if (isset($_SESSION['user']) && $_SESSION['user_admin'] == false) : ?>
 
                             <li class="menu__item is-itemHov"><a href="/?page=mon-compte">MON COMPTE</a></li>
 
