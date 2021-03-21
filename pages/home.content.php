@@ -143,6 +143,7 @@ $i = 0;
         $arrayrep = json_decode($response, true);
 
         ?>
+        <?php if ( isset($response) && !empty($response)) : ?>
         <table class="my-3">
 
 
@@ -165,6 +166,7 @@ $i = 0;
 
 
         </table>
+        <?php endif; ?>
 
 
     </div>
