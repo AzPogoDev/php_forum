@@ -20,3 +20,13 @@ function scroll(){
 }
 
 scroll();
+
+// Modal settings
+
+
+const title = document.querySelector('#modaltitle');
+const content = document.querySelector('#modalcontent');
+const modalimg = document.querySelector('#modalimg');
+
+
+
