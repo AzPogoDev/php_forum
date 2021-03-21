@@ -1,5 +1,6 @@
 <?php
 
+
 /** @var PDO $database */
 $database = require_once dirname(__FILE__) . '/../utils/database.utils.php';
 
@@ -33,16 +34,10 @@ if (isset($_POST['catDeleteSubmit'])) {
 //        Delete all subject related
         $querySubDelete = $database->prepare('DELETE FROM `subject` WHERE `subject`.`categoryId` = :catIdToDelete');
 
-//        Delete all reply related
-        $queryReplyDelete = $database->prepare('DELETE FROM `reply` WHERE `reply`.`subjectId` = :subjectId');
-
         $queryInsert->execute([
             'catIdToDelete' => $_POST['catIdToDelete']
         ]);
 
-        $queryReplyDelete->execute([
-            'subjectId' => $_POST['subjectId']
-        ]);
 
         $querySubDelete->execute([
             'catIdToDelete' => $_POST['catIdToDelete']
@@ -57,8 +52,15 @@ if (isset($_POST['subToDelete'])) {
     if (isset($_POST['subIdToDelete']) && !empty($_POST['subIdToDelete'])) {
 
         $queryInsert = $database->prepare('DELETE FROM `subject` WHERE `subject`.`id` = :subIdToDelete');
+
+        $queryReplyDelete = $database->prepare('DELETE FROM `reply` WHERE `reply`.`subjectId` = :subjectId');
+
         $queryInsert->execute([
             'subIdToDelete' => $_POST['subIdToDelete']
+
+        ]);
+        $queryReplyDelete->execute([
+            'subjectId' => $_POST['subIdToDelete']
         ]);
 
         header("Location: ./?page=admin");
@@ -72,6 +74,19 @@ function GetNumberOfPost($catId)
     $querybis = $database->prepare('SELECT * FROM `subject` WHERE categoryid = :catid');
     $querybis->execute([
         'catid' => $catId,
+    ]);
+    $result = $querybis->rowCount();
+    echo $result;
+}
+
+
+function GetNumberOfReply($subId)
+{
+
+    $database = new PDO('mysql:dbname=php_forum_tp;host=localhost;charset=utf8', 'root');
+    $querybis = $database->prepare('SELECT * FROM `reply` WHERE subjectId = :subId');
+    $querybis->execute([
+        'subId' => $subId,
     ]);
     $result = $querybis->rowCount();
     echo $result;
@@ -96,7 +111,10 @@ if (isset($_POST['newStatus'])) {
 
 if (isset($_POST['disconnect'])) {
     session_destroy();
-    header('Location: ./?page=home');
+    echo '<script language="Javascript">
+document.location.replace("./?page=home");
+</script>';
+    header("Location: ./?page=home");
 }
 
 
@@ -126,6 +144,9 @@ if (isset($_POST['disconnect'])) {
             <th>
                 <p>Number of post</p>
             </th>
+            <th>
+                <p>Accéder a la catégorie</p>
+            </th>
         </tr>
 
         <?php while (($q = $query->fetch())) { ?>
@@ -142,9 +163,6 @@ if (isset($_POST['disconnect'])) {
 
                     <form action="/?page=admin" method="POST">
 
-                        <?php while (($replyq = $queryreply->fetch())) { ?>
-                            <input type="hidden" name="subjectId" value="<?= $replyq['subjectId']; ?>">
-                        <?php } ?>
 
                         <input type="hidden" name="catIdToDelete" value="<?= $q['id']; ?>">
                         <button type="submit" name="catDeleteSubmit" class="my-2 btn btn-danger">Supprimer la
@@ -154,6 +172,8 @@ if (isset($_POST['disconnect'])) {
 
                 </td>
                 <td><?php GetNumberOfPost($q['id']); ?></td>
+                <td><a href="/?page=single-category&name=<?= $q['title']; ?>&catid=<?= $q['id']; ?>"
+                       class="btn btn-primary">Accéder a lacatégorie</a></td>
             <tr>
 
             </tr>
@@ -165,17 +185,6 @@ if (isset($_POST['disconnect'])) {
     </table>
     <h2 class="text-left my-3" style="font-size: 4rem">Subject Admin</h2>
 
-    <!--    <form action="/?page=admin" method="POST">-->
-    <!---->
-    <!--        <div class="form-group">-->
-    <!--            <label for="subName">Nom du sujet</label>-->
-    <!--            <input type="text" class="form-control" id="subName" name="subName"-->
-    <!--                   placeholder="Nom du sujet">-->
-    <!--            <textarea class="form-control" placeholder="Content subject" name="subContent" id="subContent"></textarea>-->
-    <!--        </div>-->
-    <!---->
-    <!--        <button type="submit" name="subSubmit" class="my-2 btn btn-primary">Créer un sujet</button>-->
-    <!--    </form>-->
 
     <table>
 
@@ -214,7 +223,8 @@ if (isset($_POST['disconnect'])) {
                 <tr class="forum-topicview-row">
 
                     <td>
-                        <p><a href="/?page=single-subject&subid=<?= $q['id']; ?>"><?= $q['title']; ?></a>
+                        <p><a href="/?page=single-subject&subid=<?= $q['id']; ?>"><?= $q['title']; ?>
+                                ( <?= GetNumberOfReply($q['id']); ?> reply )</a>
                         </p>
                         <p>
                         </p>
@@ -233,8 +243,7 @@ if (isset($_POST['disconnect'])) {
                     <td>
                         <form action="/?page=admin" method="POST">
                             <input type="hidden" name="subIdToDelete" value="<?= $q['id']; ?>">
-                            <button type="submit" name="subToDelete" class="my-2 btn btn-danger">Supprimer le sujet et
-                                ses messages
+                            <button type="submit" name="subToDelete" class="my-2 btn btn-danger">X
                             </button>
                         </form>
                     </td>

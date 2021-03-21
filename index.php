@@ -4,11 +4,15 @@ session_start();
 
 require_once dirname(__FILE__) . '/includes/top.inc.php';
 
-if (empty($_SESSION['user']) && !empty($_GET['page']) ){
+if (empty($_SESSION['user']) && !empty($_GET['page'])) {
 
-    if($_GET['page'] == "admin" && !isset($_SESSION['user'])){
+    if ($_GET['page'] == "admin" && !isset($_SESSION['user'])) {
         header("Location: ./?page=home");
-        die();
+    }
+}
+if (!empty($_SESSION['user']) && !empty($_GET['page'])  && !empty($_SESSION['user_admin']) ) {
+    if ($_GET['page'] == "admin" && isset($_SESSION['user']) && $_SESSION['user_admin'] == false) {
+        header("Location: ./?page=home");
     }
 }
 
@@ -21,7 +25,7 @@ if (isset($_GET['page'])) {
     } else {
         require_once dirname(__FILE__) . '/pages/404.content.php';
     }
-}  else {
+} else {
     require_once dirname(__FILE__) . '/pages/home.content.php';
 }
 
