@@ -10,6 +10,7 @@ $query->execute([
 
 $cateid = $_GET['catid'];
 $catname = $_GET['name'];
+
 if (isset($_POST['subSubmit'])) {
     if (isset($_POST['postTitle']) && !empty($_POST['postTitle']) && isset($_POST['postContent']) && !empty($_POST['postContent'])) {
 
